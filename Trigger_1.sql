@@ -14,13 +14,13 @@ SELECT* FROM TESTETRIGGER
 SELECT* FROM TESTETRIGGERHISTORICO
 
 --	CRIANDO TRIGGER
-CREATE TRIGGER TR_BACKUP_TESTE										--	Nome da trigger
-ON TESTETRIGGER														--	Tabela origem da ação
-FOR UPDATE															--	'FOR' indica que será executado antes 'UPDATE' indica o comando
+CREATE TRIGGER TR_BACKUP_TESTE						--	Nome da trigger
+ON TESTETRIGGER								--	Tabela origem da ação
+FOR UPDATE								--	'FOR' indica que será executado antes 'UPDATE' indica o comando
 AS									
 BEGIN
 	INSERT INTO TESTETRIGGERHISTORICO(NOME, IDADE, DATAALTERACAO)	--	Insert dos dados
-	SELECT NOME, IDADE, GETDATE() FROM deleted;						--	Indica que inserirá os campos correspondentes ao NOME, IDADE da tabela TESTETRIGGER e pegará a data e hora atual, obtendo os dados antes de serem alterados
+	SELECT NOME, IDADE, GETDATE() FROM deleted;			--	Indica que inserirá os campos correspondentes ao NOME, IDADE da tabela TESTETRIGGER e pegará a data e hora atual, obtendo os dados antes de serem alterados
 END
 
 update TESTETRIGGER SET NOME = 'João mais o sobrenome begin' where id = 1
